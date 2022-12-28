@@ -57,10 +57,10 @@ class Ui_mainWindow(object):
         self.dbn.setObjectName("dbn")
         self.verticalLayout.addWidget(self.dbn)
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(390, 455, 348, 63))
+        self.pushButton.setGeometry(QtCore.QRect(390, 455, 361, 63))
         self.pushButton.setObjectName("pushButton")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(430, 100, 281, 201))
+        self.label_4.setGeometry(QtCore.QRect(390, 40, 361, 401))
         font = QtGui.QFont()
         font.setFamily("Microsoft JhengHei UI")
         font.setPointSize(12)
@@ -91,6 +91,15 @@ class Ui_mainWindow(object):
         self.label_2.setText(_translate("mainWindow", "MONGODB CONNECTION STRING"))
         self.label_3.setText(_translate("mainWindow", "NEW DATABASE NAME"))
         self.pushButton.setText(_translate("mainWindow", "PushButton"))
-        self.label_4.setText(_translate("mainWindow", "SQL --> MongoDB\n"
+        self.label_4.setText(_translate("mainWindow", "This application uses PyODBC to get \n"
+"all the information from a \n"
+"SQL Server Database \n"
+"(every table, and all data they contain)\n"
+"and copies all the data to a \n"
+"new MongoDB database.\n"
+"Currently it only supports \n"
+"SQL Server and only with \n"
+"ODBC connection strings, \n"
+"this is the first version.\n"
 ""))
         self.menuSQL_SERVER_TO_MONGODB_MIGRATOR.setTitle(_translate("mainWindow", "SQL SERVER TO MONGODB MIGRATOR"))

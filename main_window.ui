@@ -81,7 +81,7 @@ QPushButton {
      <rect>
       <x>390</x>
       <y>455</y>
-      <width>348</width>
+      <width>361</width>
       <height>63</height>
      </rect>
     </property>
@@ -92,10 +92,10 @@ QPushButton {
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>100</y>
-      <width>281</width>
-      <height>201</height>
+      <x>390</x>
+      <y>40</y>
+      <width>361</width>
+      <height>401</height>
      </rect>
     </property>
     <property name="font">
@@ -108,7 +108,16 @@ QPushButton {
      </font>
     </property>
     <property name="text">
-     <string>SQL --&gt; MongoDB
+     <string>This application uses PyODBC to get 
+all the information from a 
+SQL Server Database 
+(every table, and all data they contain)
+and copies all the data to a 
+new MongoDB database.
+Currently it only supports 
+SQL Server and only with 
+ODBC connection strings, 
+this is the first version.
 </string>
     </property>
    </widget>
