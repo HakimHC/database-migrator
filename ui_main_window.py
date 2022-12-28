@@ -95,7 +95,7 @@ class Ui_mainWindow(object):
 "all the information from a \n"
 "SQL Server Database \n"
 "(every table, and all data they contain)\n"
-"and copies all the data to a \n"
+"and copies all of the data to a \n"
 "new MongoDB database.\n"
 "Currently it only supports \n"
 "SQL Server and only with \n"

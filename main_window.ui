@@ -112,7 +112,7 @@ QPushButton {
 all the information from a 
 SQL Server Database 
 (every table, and all data they contain)
-and copies all the data to a 
+and copies all of the data to a 
 new MongoDB database.
 Currently it only supports 
 SQL Server and only with 
