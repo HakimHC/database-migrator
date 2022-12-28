@@ -17,18 +17,13 @@ def ss_to_mongo(sql_connection_string, mongo_conn, database_name):
 
     cursor.execute(f"SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG='{db}'")
 
-    tables = []
-
-    for i in cursor:
-        tables.append(i[0])
+    tables = [table[0] for table in cursor.fetchall()]
 
     for table in tables:
         mycol = mydb[f"{table}"]
-        sql = f"SELECT * FROM {table}"
-        columns = [column[0] for column in cursor.description]
+        sql = f"SELECT * FROM [{table}]"
         df = pd.read_sql(sql, conn)
-        for k in range(0, df.shape[0]):
-            diction = {}
-            for i in range(0, len(df.loc[k].keys())):
-                diction[f"{df.loc[k].keys()[i]}"] = str(df.loc[k].values[i])
-            mycol.insert_one(diction)
+        df.fillna('Null',inplace=True)
+        records = df.to_dict(orient='records')
+        if records:
+            mycol.insert_many(records)
