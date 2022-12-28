@@ -2,22 +2,33 @@ import pymongo
 import pyodbc
 import pandas as pd
 
-connection_string ='Driver={SQL Server};Server=DESKTOP-HNDUMOI\SQLEXPRESS;Database=Almacen;Trusted_Connection=yes;'
-db_index = connection_string.find('Database=')
-db = connection_string.replace('=', ';')[db_index:].split(';')[1]
+def ss_to_mongo(sql_connection_string, mongo_conn, database_name):
 
-conn = pyodbc.connect(connection_string)
+    db_index = sql_connection_string.find('Database=')
+    db = sql_connection_string.replace('=', ';')[db_index:].split(';')[1]
 
-cursor = conn.cursor()
+    conn = pyodbc.connect(sql_connection_string)
 
-cursor.execute(f"SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG='{db}'")
+    cursor = conn.cursor()
 
-tables = []
+    myclient = pymongo.MongoClient(mongo_conn)
 
-for i in cursor:
-    tables.append(i[0])
+    mydb = myclient[f'{database_name}']
 
-for i in tables:
-    cursor.execute(f"SELECT * FROM {i}")
-    df = pd.DataFrame(cursor.fetchall())
-    print(df)
+    cursor.execute(f"SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG='{db}'")
+
+    tables = []
+
+    for i in cursor:
+        tables.append(i[0])
+
+    for table in tables:
+        mycol = mydb[f"{table}"]
+        sql = f"SELECT * FROM {table}"
+        columns = [column[0] for column in cursor.description]
+        df = pd.read_sql(sql, conn)
+        for k in range(0, df.shape[0]):
+            diction = {}
+            for i in range(0, len(df.loc[k].keys())):
+                diction[f"{df.loc[k].keys()[i]}"] = str(df.loc[k].values[i])
+            mycol.insert_one(diction)

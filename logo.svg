@@ -1,0 +1,5 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="256" cy="256" r="224" fill="#000080"/>
+  <text x="256" y="224" font-size="48" font-family="'8bitoperator JVE', cursive" text-anchor="middle" fill="#FFFFFF">SQL</text>
+  <text x="256" y="320" font-size="48" font-family="'8bitoperator JVE', cursive" text-anchor="middle" fill="#FFFFFF">MongoDB</text>
+</svg>
